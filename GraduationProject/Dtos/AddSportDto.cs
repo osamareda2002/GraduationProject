@@ -2,8 +2,8 @@
 {
     public class AddSportDto
     {
-        public string Name { get; set; }
-        public double calories { get; set; }
+        public string? Name { get; set; }
+        public double CaloreisPerKg { get; set; }
 
     }
 }

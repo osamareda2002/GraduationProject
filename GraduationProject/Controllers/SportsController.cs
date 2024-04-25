@@ -32,7 +32,7 @@ namespace GraduationProject.Controllers
             var sport = new Sport
             {
                 SportName = dto.Name,
-                CaloreisPerKg = dto.calories
+                CaloreisPerKg = dto.CaloreisPerKg
             };
             await _context.Sports.AddAsync(sport);
             _context.SaveChanges();
@@ -47,7 +47,7 @@ namespace GraduationProject.Controllers
                 return NotFound($"No Trainee was Found with ID : {id}");
 
             sport.SportName = dto.Name;
-            sport.CaloreisPerKg = dto.calories;
+            sport.CaloreisPerKg = dto.CaloreisPerKg;
 
             _context.SaveChanges();
             return Ok(sport);

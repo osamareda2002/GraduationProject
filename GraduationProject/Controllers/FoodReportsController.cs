@@ -19,8 +19,15 @@ namespace GraduationProject.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(AddFoodReport dto)
         {
-            var foodReport = new FoodReport();
-            foodReport = dto.foodReport;
+            /*var foodReport = new FoodReport();
+            foodReport = dto.foodReport*/;
+            var foodReport = new FoodReport
+            {
+                TraineeId = dto.TraineeId,
+                DateOfOccurrence = dto.DateOfOccurrence,
+                foodId = dto.foodId,
+                quantity = dto.quantity,
+            };
             await _context.AddAsync(foodReport);
             
             var dailyActivities = await _context.DailyActivity.ToListAsync();

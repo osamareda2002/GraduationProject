@@ -1,11 +1,10 @@
 ﻿namespace GraduationProject.Models
 {
-    public class Food
+    public class AfterWorkMeal
     {
         public int Id { get; set; }
-        public string FoodName { get; set; }
+        public string Name { get; set; }
         public double Calories { get; set; }
-        public int MealId { get; set; }
 
     }
 }

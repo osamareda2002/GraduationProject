@@ -18,8 +18,13 @@ namespace GraduationProject.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync(AddSportReport dto)
         {
-            var sportReport = new SportReport();
-            sportReport = dto.sportReport;
+            var sportReport = new SportReport
+            {
+                TraineeId = dto.TraineeId,
+                sportId = dto.sportId,
+                DateOfOccurrence = dto.DateOfOccurrence,
+                DurationTime = dto.DurationTime,
+            };
             await _context.AddAsync(sportReport);
 
 

@@ -28,7 +28,6 @@ namespace GraduationProject.Services
                     {
                         // Process the fields array
                         food.FoodName = fields[0];
-                        food.Serving = fields[1];
                         food.Calories = double.Parse(fields[2]);
                         
                         _context.Foods.Add(food);

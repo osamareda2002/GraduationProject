@@ -31,44 +31,55 @@ namespace GraduationProject.Controllers
                 }
             }
             int? cal = trainee.RequiredCalories;
+
             var foods = await _context.Foods.ToListAsync();
-            List<string> foodPlan = new List<string>();
             var breakfast = await _context.Breakfasts.ToListAsync();
+            var snack = await _context.Snacks.ToListAsync();
             var meal = await _context.Meals.ToListAsync();
+            var dinner = await _context.Dinners.ToListAsync();
+            var snack2 = await _context.AfterWorkMeals.ToListAsync();
+            double dayCalories = 0;
+            List<string> foodPlan = new List<string>();
+            foodPlan.Add("Breakfast : ");
             foreach (var b in breakfast)
+            {
                 foodPlan.Add(b.Name);
-            List<string>meals = new List<string>();
-            foreach (var item in meal)
-                meals.Add(item.Name);
+                dayCalories += b.Calories;
+            }
+
+            foodPlan.Add("Snack : ");
+            foreach (var s in snack)
+            {
+                foodPlan.Add(s.Name);
+                dayCalories += s.Calories;
+            }
+
+            foodPlan.Add("Lunch : ");
             Random random = new Random();
-            int index = random.Next(meals.Count);
-            string randomItem = meals[index];
-            foodPlan.Add(randomItem);
-            int breakfastCalories = 260 + 155 + 201 + 79;
-            cal = cal - (2 * breakfastCalories);
+            int index = random.Next(7);
             foreach (var item in foods)
             {
-                if(item.FoodName==randomItem)
+                if (item.MealId == index)
                 {
-                    cal = (int?)(cal - item.Calories);
-                    break;
+                    foodPlan.Add(item.FoodName);
+                    dayCalories += item.Calories;
                 }
             }
-            var fruit = await _context.Fruits.ToListAsync();
-            var vegetable = await _context.Vegetables.ToListAsync();
-            List<string>fruits = new List<string>();
-            List<string>vegetables= new List<string>();
-            foreach (var item in fruit) fruits.Add(item.Name);
-            foreach (var item in vegetable) vegetables.Add(item.Name);
-            index = random.Next(fruits.Count);
-            randomItem = fruits[index];
-            foodPlan.Add(randomItem);
-            if(index == fruits.Count-1)foodPlan.Add(fruits[index - 1]);
-            else foodPlan.Add(fruits[index+1]);
-            index = random.Next(vegetables.Count);
-            foodPlan.Add(vegetables[index]);
-            if(index == vegetables.Count-1)  foodPlan.Add(vegetables[index-1]);
-            else foodPlan.Add(vegetables[index+1]);
+
+            foodPlan.Add("After Work : ");
+            foreach (var item in snack2)
+            {
+                foodPlan.Add(item.Name);
+                dayCalories += item.Calories;
+            }
+
+            foodPlan.Add("Dinner : ");
+            foreach (var d in dinner)
+            {
+                foodPlan.Add(d.Name);
+                dayCalories += d.Calories;
+            }
+
             return Ok(foodPlan);
         }
     }

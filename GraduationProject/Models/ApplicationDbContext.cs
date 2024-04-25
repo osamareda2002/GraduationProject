@@ -19,5 +19,9 @@ namespace GraduationProject.Models
         public DbSet<Fruit> Fruits { get; set; }
         public DbSet<Vegetable> Vegetables { get; set; }
         public DbSet<Meal> Meals { get; set; }
+        public DbSet<Snack> Snacks { get; set; }
+        public DbSet<Dinner> Dinners { get; set; }
+        public DbSet<AfterWorkMeal> AfterWorkMeals { get; set; }
+
     }
 }
